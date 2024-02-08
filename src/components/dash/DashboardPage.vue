@@ -1,10 +1,13 @@
 <template class="dash">
-    <h1>Hello, Welcome</h1>
+    <div>
+        <h1>Welcome</h1>
+    </div>
 </template>
 
 <script>
+
 export default {
-    name: 'DasboardPage'
+    name: 'DasboardPage',
 }
 </script>
 

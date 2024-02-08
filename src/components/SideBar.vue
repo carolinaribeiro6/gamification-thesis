@@ -1,21 +1,46 @@
 <template>
   <aside>
     <div>
+      <div class="sidebar-header">
       <img class="logo" src="../assets/logo.png" alt="iotech" />
+      <button class="colapse" :icon="['fas', 'circle-chevron-left']"></button>
+    </div>
       <div class="sidebar" v-for="page in pages" :key="page.title">
-        <button @click="openTabm(page.title)">
-            <font-awesome-icon class="icon" :icon="page.icon"/>
-            {{ page.title }}
+        <button
+          :style="{
+            backgroundColor: page.clicked
+              ? 'rgb(223, 235, 255)'
+              : 'transparent',
+            color: page.clicked ? 'black' : 'white',
+            border: rounded - r - xl,
+          }"
+          class="rounded-card"
+          :key="button"
+          @click="openTabm(page.title)"
+        >
+          <font-awesome-icon class="icon fa-fw" :icon="page.icon" />
+          {{ page.title }}
         </button>
         <div class="child" v-if="page.openTab">
           <div v-for="child in page.children" :key="child.title">
-            <button>
-                <font-awesome-icon class="icon" :icon="child.icon"/>
+            <button
+              :style="{
+                backgroundColor: child.clicked
+                  ? 'rgb(223, 235, 255)'
+                  : 'transparent',
+                color: child.clicked ? 'black' : 'white',
+                border: rounded - r - xl,
+              }"
+              class="rounded-card"
+              :key="button"
+              @click="openTabmChild(page.title, child.title)"
+            >
+              <font-awesome-icon class="icon fa-fw" :icon="child.icon" />
               {{ child.title }}
             </button>
           </div>
         </div>
-    </div>
+      </div>
     </div>
   </aside>
 </template>
@@ -27,104 +52,161 @@ export default {
       this.pages.find((x) => x.title === page_title).openTab = !this.pages.find(
         (x) => x.title === page_title
       ).openTab;
+      this.pages.find((x) => x.title === page_title).clicked = !this.pages.find(
+        (x) => x.title === page_title
+      ).clicked;
+      this.pages.forEach((navbar_item) => {
+        if (navbar_item.title != page_title) {
+          navbar_item.clicked = false;
+          navbar_item.openTab = false;
+        }
+      });
     },
+    openTabmChild(page_title, child_title){
+      this.pages.map((navbar_item)=>{
+        if(navbar_item.title === page_title){
+          navbar_item.children.map((navbar_child)=>{
+            if(navbar_child.title === child_title){
+              navbar_child.clicked = true
+            }else{
+              navbar_child.clicked = false
+            }
+          })
+        }
+      })
+    },
+
   },
+
   data() {
     return {
       pages: [
         {
           title: "Dashboard",
           openTab: false,
-          icon: ['fas', 'desktop']
+          icon: ["fas", "desktop"],
+          clicked: false,
         },
         {
           title: "Work",
           openTab: false,
-          icon: ['fas', 'briefcase'],
+          icon: ["fas", "briefcase"],
+          clicked: false,
           children: [
             {
               title: "My Work",
-              icon: ['fas', 'house-laptop'],
+              icon: ["fas", "house-laptop"],
+              openTab: false,
+              clicked: true,
             },
             {
               title: "Records",
-              icon: ['fas', 'clipboard'],
+              icon: ["fas", "clipboard"],
+              openTab: false,
+              clicked: false,
             },
             {
               title: "Time",
-              icon: ['fas', 'clock'],
+              icon: ["fas", "clock"],
+              openTab: false,
+              clicked: false,
             },
             {
               title: "Logs",
-              icon: ['fas', 'paste'],
+              icon: ["fas", "paste"],
+              openTab: false,
+              clicked: false,
             },
             {
               title: "PO",
-              icon: ['fas', 'address-book'],
+              icon: ["fas", "address-book"],
+              openTab: false,
+              clicked: false,
             },
             {
               title: "SM",
-              icon: ['fas', 'address-book'],
+              icon: ["fas", "address-book"],
+              openTab: false,
+              clicked: false,
             },
           ],
         },
         {
           title: "Account",
           openTab: false,
-          icon: ['fas', 'user'],
+          icon: ["fas", "user"],
+          clicked: false,
           children: [
             {
               title: "My Account",
-              icon: ['fas', 'user'],
+              icon: ["fas", "user"],
+              openTab: false,
+              clicked: true,
             },
             {
               title: "Salary",
-              icon: ['fas', 'money-bill-wave'],
+              icon: ["fas", "money-bill-wave"],
+              openTab: false,
+              clicked: false,
             },
             {
               title: "History",
-              icon: ['fas', 'clock-rotate-left'],
+              icon: ["fas", "clock-rotate-left"],
+              openTab: false,
+              clicked: false,
             },
           ],
         },
         {
           title: "ioGamify",
           openTab: false,
-          icon: ['fas', 'gamepad'],
+          icon: ["fas", "gamepad"],
           children: [
             {
               title: "My Performance",
-              icon: ['fas', 'ranking-star'],
+              icon: ["fas", "ranking-star"],
+              openTab: false,
+              clicked: true,
             },
             {
               title: "Rewards",
-              icon: ['fas', 'gift'],
+              icon: ["fas", "gift"],
+              openTab: false,
+              clicked: false,
             },
             {
               title: "View Awards",
-              icon: ['fas', 'trophy'],
+              icon: ["fas", "trophy"],
+              openTab: false,
+              clicked: false,
             },
           ],
         },
         {
           title: "Projects",
           openTab: false,
-          icon: ['fas', 'folder-closed'],
+          icon: ["fas", "folder-closed"],
+          clicked: false,
           children: [
             {
               title: "Charts",
-              icon: ['fas', 'chart-simple'],
+              icon: ["fas", "chart-simple"],
+              openTab: false,
+              clicked: true,
             },
             {
               title: "Table",
-              icon: ['fas', 'table'],
+              icon: ["fas", "table"],
+              openTab: false,
+              clicked: false,
             },
           ],
         },
         {
           title: "Rules",
-          icon: ['fas', 'newspaper'],
+          icon: ["fas", "newspaper"],
           openTab: false,
+          clicked: false,
         },
       ],
     };
@@ -134,8 +216,17 @@ export default {
 
 <style scoped>
 
+.sidebar-header {
+  display: flex;
+  margin-left: 45px;
+}
+.rounded-card {
+  border-radius: 50px;
+}
+
 .icon {
-    margin-right: 12px;
+  margin-right: 12px;
+  image-resolution: 2px;
 }
 
 .child {
@@ -153,10 +244,9 @@ export default {
   background: transparent;
   color: white;
   border-color: transparent;
-  position: 30px;
 }
 
-.sidebar buttonOn {
+.clicked {
   background: lightblue;
   border-radius: 12px;
   color: black;

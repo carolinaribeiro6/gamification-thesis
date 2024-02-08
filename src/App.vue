@@ -1,23 +1,37 @@
 <template>
-  <div>
+  <div class="wrapper">
+    <sidebar></sidebar>
+    <div>
+    <navbar></navbar>
     <router-view></router-view>
+  </div>
   </div>
 </template>
 
 <script>
+import sidebar from './components/SideBar.vue';
+import navbar from './components/NavBar.vue';
 
 export default {
   name: 'App',
+  components: {
+    sidebar,
+    navbar
+  }
 }
 </script>
 
 <style>
+.wrapper {
+  display:flex;
+}
 #app {
   font-family: Tw Cen MT Condensed, Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #1C3E70;
+  background-color: rgb(233,233,233);
 }
 
 .root {
