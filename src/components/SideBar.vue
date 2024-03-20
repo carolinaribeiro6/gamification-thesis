@@ -2,9 +2,9 @@
   <aside>
     <div>
       <div class="sidebar-header">
-      <img class="logo" src="../assets/logo.png" alt="iotech" />
-      <button class="colapse" :icon="['fas', 'circle-chevron-left']"></button>
-    </div>
+        <img class="logo" src="../assets/logo.png" alt="iotech" />
+        <button class="colapse" :icon="['fas', 'circle-chevron-left']"></button>
+      </div>
       <div class="sidebar" v-for="page in pages" :key="page.title">
         <button
           :style="{
@@ -83,14 +83,14 @@ export default {
       pages: [
         {
           title: "Dashboard",
+          icon: ['fas', 'desktop'],
           openTab: false,
-          icon: ["fas", "desktop"],
           clicked: false,
         },
         {
           title: "Work",
-          openTab: false,
           icon: ["fas", "briefcase"],
+          openTab: false,
           clicked: false,
           children: [
             {
@@ -133,8 +133,8 @@ export default {
         },
         {
           title: "Account",
-          openTab: false,
           icon: ["fas", "user"],
+          openTab: false,
           clicked: false,
           children: [
             {
@@ -159,8 +159,8 @@ export default {
         },
         {
           title: "ioGamify",
-          openTab: false,
           icon: ["fas", "gamepad"],
+          openTab: false,
           children: [
             {
               title: "My Performance",
@@ -184,8 +184,8 @@ export default {
         },
         {
           title: "Projects",
-          openTab: false,
           icon: ["fas", "folder-closed"],
+          openTab: false,
           clicked: false,
           children: [
             {
@@ -218,26 +218,26 @@ export default {
 
 .sidebar-header {
   display: flex;
-  margin-left: 45px;
+  padding: 0rem 2.8125rem 0rem 2.8125rem;
 }
 .rounded-card {
-  border-radius: 50px;
+  border-radius: 3.125rem;
 }
 
 .icon {
-  margin-right: 12px;
-  image-resolution: 2px;
+  margin-right: 0.75rem;
+  image-resolution: 0.125rem;
 }
 
 .child {
-  margin-top: 5px;
-  margin-left: 20px;
+  margin-top: 0.3125rem;
+  margin-left: 1.25rem;
 }
 
 .sidebar {
-  margin-top: 15px;
+  margin-top: 0.9375rem;
   text-align: left;
-  margin-left: 20px;
+  margin-left: 1.25rem;
 }
 
 .sidebar button {
@@ -248,32 +248,31 @@ export default {
 
 .clicked {
   background: lightblue;
-  border-radius: 12px;
+  border-radius: 0.75rem;
   color: black;
   border-color: transparent;
-  position: 30px;
+  position: 1.875rem;
 }
 
 .logo {
-  margin-top: 20px;
-  width: 150px;
-  margin-bottom: 10px;
+  margin-top: 1.25rem;
+  width: 9.375rem;
+  margin-bottom: 0.625rem;
 }
 
 aside {
   display: flex;
   flex-direction: column;
-  width: 250px;
-  overflow: hidden;
+  width: 15.625rem;
   min-height: 100vh;
-  padding-top: 0px;
+  padding-top: 0rem;
 
   background-color: #1c3e70;
   color: #ffffff;
 
   transition: 0.2s ease-out;
 
-  @media (max-width: 768px) {
+  @media (max-width: 48rem) {
     position: fixed;
     z-index: 99;
   }

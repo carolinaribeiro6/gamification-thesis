@@ -1,29 +1,31 @@
 <template>
-  <div class="wrapper">
-    <sidebar></sidebar>
-    <div>
-    <navbar></navbar>
-    <router-view></router-view>
-  </div>
-  </div>
+    <div class="wrapper">
+      <sidebar></sidebar>
+      <div>
+        <navbar></navbar>
+        <router-view></router-view>
+      </div>
+    </div>
 </template>
 
 <script>
 import sidebar from './components/SideBar.vue';
 import navbar from './components/NavBar.vue';
 
+
 export default {
   name: 'App',
   components: {
     sidebar,
-    navbar
-  }
-}
+    navbar,
+  },
+};
 </script>
 
 <style>
 .wrapper {
   display:flex;
+  height:fit-content;
 }
 #app {
   font-family: Tw Cen MT Condensed, Avenir, Helvetica, Arial, sans-serif;
