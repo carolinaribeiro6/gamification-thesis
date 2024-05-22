@@ -9,33 +9,26 @@
           <th>Description</th>
           <th>Hours</th>
         </thead>
-        <!-- <tbody slot="body" slot-scope="{displayData}">
-          <tr v-for="row in displayData" :key="row.id">
-            <td>{{ row.name }}</td>
-            <td>{{ row.age }}</td>
-            <td>{{ row.email }}</td>
-            <td>
-                {{ row.address.street }}, 
-                {{ row.address.city }} 
-                {{ row.address.state}}
-            </td>
-          </tr>
-        </tbody> -->
+        <tr v-for="item in items" :key="item">
+          <td v-for="field in item" :key="field">{{field}}</td>
+        </tr>
       </v-table>
     </div>
   </template>
   
-  <script>
-    export default {
-      data() {
-        return {
-          items: [
-            { age: 40, first_name: 'Dickerson', last_name: 'Macdonald' },
-            { age: 21, first_name: 'Larsen', last_name: 'Shaw' },
-            { age: 89, first_name: 'Geneva', last_name: 'Wilson' },
-            { age: 38, first_name: 'Jami', last_name: 'Carney' }
-          ]
-        }
+  <script type="text/<script>">
+  export default {
+    data() {
+      return {
+        items: [
+          { date: "2024-03-25", project: 13, area: "ioEnergy", task: "Gestão", description: "Gestão de Tarefas", hours: "CFP" }
+        ]
       }
     }
+    /*async created() {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbyP2S6CajCrBm6uAbJX42pORmKpyODnAj_4Mj1t0LycWHzvYILNC6cjUZpVn7Sw8KKa8A/exec?endpoint=workData");
+      const workData = await response.json();
+      this.items = workData;
+    }*/
+  }
   </script>

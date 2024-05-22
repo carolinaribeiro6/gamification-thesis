@@ -16,7 +16,8 @@
           }"
           class="rounded-card"
           :key="button"
-          @click="openTabm(page.title)"
+          @click="openTabm(page.title), redirectTabm(page.title)"
+          
         >
           <font-awesome-icon class="icon fa-fw" :icon="page.icon" />
           {{ page.title }}
@@ -33,7 +34,7 @@
               }"
               class="rounded-card"
               :key="button"
-              @click="openTabmChild(page.title, child.title)"
+              @click="openTabmChild(page.title, child.title), redirectTabChildm(child.title)"
             >
               <font-awesome-icon class="icon fa-fw" :icon="child.icon" />
               {{ child.title }}
@@ -76,142 +77,192 @@ export default {
       })
     },
 
-  },
+    redirectTabm(page_title) {
+      console.log(page_title);
+      if (page_title === 'Dashboard') {
+        this.$router.push('/dashboard')
+      } else if (page_title === 'Work') {
+        this.$router.push('/mywork')
+      } else if (page_title === 'Account') {
+        this.$router.push('/myaccount')
+      } else if (page_title === 'ioGamify') {
+        this.$router.push('/myperformance')
+      } else if (page_title === 'Projects') {
+        this.$router.push('/charts')
+      } else if (page_title === 'Rules') {
+        this.$router.push('/rules')
+      }
+    },
 
-  data() {
-    return {
-      pages: [
-        {
-          title: "Dashboard",
-          icon: ['fas', 'desktop'],
-          openTab: false,
-          clicked: false,
-        },
-        {
-          title: "Work",
-          icon: ["fas", "briefcase"],
-          openTab: false,
-          clicked: false,
-          children: [
-            {
-              title: "My Work",
-              icon: ["fas", "house-laptop"],
-              openTab: false,
-              clicked: true,
-            },
-            {
-              title: "Records",
-              icon: ["fas", "clipboard"],
-              openTab: false,
-              clicked: false,
-            },
-            {
-              title: "Time",
-              icon: ["fas", "clock"],
-              openTab: false,
-              clicked: false,
-            },
-            {
-              title: "Logs",
-              icon: ["fas", "paste"],
-              openTab: false,
-              clicked: false,
-            },
-            {
-              title: "PO",
-              icon: ["fas", "address-book"],
-              openTab: false,
-              clicked: false,
-            },
-            {
-              title: "SM",
-              icon: ["fas", "address-book"],
-              openTab: false,
-              clicked: false,
-            },
-          ],
-        },
-        {
-          title: "Account",
-          icon: ["fas", "user"],
-          openTab: false,
-          clicked: false,
-          children: [
-            {
-              title: "My Account",
-              icon: ["fas", "user"],
-              openTab: false,
-              clicked: true,
-            },
-            {
-              title: "Salary",
-              icon: ["fas", "money-bill-wave"],
-              openTab: false,
-              clicked: false,
-            },
-            {
-              title: "History",
-              icon: ["fas", "clock-rotate-left"],
-              openTab: false,
-              clicked: false,
-            },
-          ],
-        },
-        {
-          title: "ioGamify",
-          icon: ["fas", "gamepad"],
-          openTab: false,
-          children: [
-            {
-              title: "My Performance",
-              icon: ["fas", "ranking-star"],
-              openTab: false,
-              clicked: true,
-            },
-            {
-              title: "Rewards",
-              icon: ["fas", "gift"],
-              openTab: false,
-              clicked: false,
-            },
-            {
-              title: "View Awards",
-              icon: ["fas", "trophy"],
-              openTab: false,
-              clicked: false,
-            },
-          ],
-        },
-        {
-          title: "Projects",
-          icon: ["fas", "folder-closed"],
-          openTab: false,
-          clicked: false,
-          children: [
-            {
-              title: "Charts",
-              icon: ["fas", "chart-simple"],
-              openTab: false,
-              clicked: true,
-            },
-            {
-              title: "Table",
-              icon: ["fas", "table"],
-              openTab: false,
-              clicked: false,
-            },
-          ],
-        },
-        {
-          title: "Rules",
-          icon: ["fas", "newspaper"],
-          openTab: false,
-          clicked: false,
-        },
-      ],
-    };
+    redirectTabChildm(child_title) {
+      console.log(child_title);
+      if (child_title === 'My Work') {
+        this.$router.push('/mywork')
+      } else if (child_title === 'Records') {
+        this.$router.push('/records')
+      } else if (child_title === 'Times') {
+        this.$router.push('/times')
+      } else if (child_title === 'Logs') {
+        this.$router.push('/logs')
+      } else if (child_title === 'PO') {
+        this.$router.push('/po')
+      } else if (child_title === 'SM') {
+        this.$router.push('/sm')
+      } else if (child_title === 'My Account') {
+        this.$router.push('/myaccount')
+      } else if (child_title === 'Salary') {
+        this.$router.push('/salary')
+      } else if (child_title === 'History') {
+        this.$router.push('/history')
+      } else if (child_title === 'My Performance') {
+        this.$router.push('/myperformance')
+      } else if (child_title === 'Rewards') {
+        this.$router.push('/rewards')
+      } else if (child_title === 'View Awards') {
+        this.$router.push('/awards')
+      } else if (child_title === 'Charts') {
+        this.$router.push('/charts')
+      } else if (child_title === 'Table') {
+        this.$router.push('/table')
+      }
+
+    }
   },
-};
+    data() {
+      return {
+        pages: [
+          {
+            title: "Dashboard",
+            icon: ['fas', 'desktop'],
+            openTab: false,
+            clicked: false,
+            redirectTab: false,
+          },
+          {
+            title: "Work",
+            icon: ["fas", "briefcase"],
+            openTab: false,
+            clicked: false,
+            children: [
+              {
+                title: "My Work",
+                icon: ["fas", "house-laptop"],
+                openTab: false,
+                clicked: true,
+              },
+              {
+                title: "Records",
+                icon: ["fas", "clipboard"],
+                openTab: false,
+                clicked: false,
+              },
+              {
+                title: "Time",
+                icon: ["fas", "clock"],
+                openTab: false,
+                clicked: false,
+              },
+              {
+                title: "Logs",
+                icon: ["fas", "paste"],
+                openTab: false,
+                clicked: false,
+              },
+              {
+                title: "PO",
+                icon: ["fas", "address-book"],
+                openTab: false,
+                clicked: false,
+              },
+              {
+                title: "SM",
+                icon: ["fas", "address-book"],
+                openTab: false,
+                clicked: false,
+              },
+            ],
+          },
+          {
+            title: "Account",
+            icon: ["fas", "user"],
+            openTab: false,
+            clicked: false,
+            children: [
+              {
+                title: "My Account",
+                icon: ["fas", "user"],
+                openTab: false,
+                clicked: true,
+              },
+              {
+                title: "Salary",
+                icon: ["fas", "money-bill-wave"],
+                openTab: false,
+                clicked: false,
+              },
+              {
+                title: "History",
+                icon: ["fas", "clock-rotate-left"],
+                openTab: false,
+                clicked: false,
+              },
+            ],
+          },
+          {
+            title: "ioGamify",
+            icon: ["fas", "gamepad"],
+            openTab: false,
+            children: [
+              {
+                title: "My Performance",
+                icon: ["fas", "ranking-star"],
+                openTab: false,
+                clicked: true,
+              },
+              {
+                title: "Rewards",
+                icon: ["fas", "gift"],
+                openTab: false,
+                clicked: false,
+              },
+              {
+                title: "View Awards",
+                icon: ["fas", "trophy"],
+                openTab: false,
+                clicked: false,
+              },
+            ],
+          },
+          {
+            title: "Projects",
+            icon: ["fas", "folder-closed"],
+            openTab: false,
+            clicked: false,
+            children: [
+              {
+                title: "Charts",
+                icon: ["fas", "chart-simple"],
+                openTab: false,
+                clicked: true,
+              },
+              {
+                title: "Table",
+                icon: ["fas", "table"],
+                openTab: false,
+                clicked: false,
+              },
+            ],
+          },
+          {
+            title: "Rules",
+            icon: ["fas", "newspaper"],
+            openTab: false,
+            clicked: false,
+          },
+        ],
+      };
+    }
+  }
 </script>
 
 <style scoped>

@@ -7,8 +7,9 @@ import RulesPage from './components/RulesPage.vue';
 import MyWork from './components/work/MyWork.vue';
 import RecordsPage from './components/work/RecordsPage.vue';
 
+
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(process.env.BASE_URL),
   routes: [
     { path: "/", component: LoginPage },
     { path: "/dashboard", component: DashboardPage },
@@ -18,7 +19,7 @@ const router = createRouter({
     { path: "/mywork", component: MyWork},
     { path: "/records", component: RecordsPage}
   ],
-});
+}); 
 
 
 export default router;

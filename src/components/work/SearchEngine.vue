@@ -1,22 +1,38 @@
 <template>
-    <div>
-        <input type="text" v-model="input" placeholder="Select Tab" />
-        <div class="item tab" v-for="tab in filteredList()" :key="tab">
-            <p>{{ tab }}</p>
-        </div>
-        <div class="item error" v-if="input&&!filteredList().length">
-            <p>No results found!</p>
-        </div>
-    </div>
+  <div id="app">
+    <h1>Vue Select - Countries</h1>
+    <v-select :options="countries" label="country"></v-select>
+</div>
 </template>
 
-<script setup>
-import { ref } from "vue";
-let input = ref("");
-const tabs = ["Work", "ioGamify - Kudos", "Work Logs"];
-function filteredList() {
-  return tabs.filter((tab) =>
-    tab.toLowerCase().includes(input.value.toLowerCase())
-  );
+<script>
+export default {
+  components: {
+    vSelect: window["vue-select"]
+  },
+  data() {
+    return {
+      countries: [
+        { country: "Spain" },
+        { country: "France" },
+        { country: "Ghana" },
+        { country: "Nigeria" },
+        { country: "Brazil" },
+        { country: "Ecuador" }
+      ]
+    };
+  }
 }
+
 </script>
+
+<style scoped>
+span {
+  display: flex;
+
+  img {
+    width: 50px;
+    margin-right: 20px;
+  }
+}
+</style>
